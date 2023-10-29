@@ -47,7 +47,7 @@
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp  GRAVE  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp UP &kp LPAR &kp RPAR &kp BSLH
-   &kp LCTRL &none   &none &none   &none   &none      &none &kp LEFT        &kp DOWN &kp RIGHT &none ENT
+   &kp LCTRL &none   &none &none   &none   &none      &none &kp LEFT        &kp DOWN &kp RIGHT &none &kp ENT
    &kp LSHFT &none   &none &none   &none   &none  &none    &kp INS &kp END  &kp HOME        &kp PG_DN &kp PG_UP &kp RSHFT
                              &kp LGUI &kp LGUI   &kp SPACE   &kp SPACE   &RALT    &mo 3
                         >;
