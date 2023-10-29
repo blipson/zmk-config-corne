@@ -15,9 +15,9 @@
                             compatible = "zmk,behavior-macro";
                             #binding-cells = <0>;
                             bindings
-                                = <&macro_press &kp LALT &kp GUI >
+                                = <&macro_press &kp LALT &kp LGUI >
                                 , <&macro_tap &kp LEFT >
-                                , <&macro_release &kp LALT &kp GUI >
+                                , <&macro_release &kp LALT &kp LGUI >
                                 ;
                         };
             rectangle_right_half: rectangle_right_half {
@@ -25,9 +25,9 @@
                                         compatible = "zmk,behavior-macro";
                                         #binding-cells = <0>;
                                         bindings
-                                            = <&macro_press &kp LALT &kp GUI >
+                                            = <&macro_press &kp LALT &kp LGUI >
                                             , <&macro_tap &kp RIGHT >
-                                            , <&macro_release &kp LALT &kp GUI >
+                                            , <&macro_release &kp LALT &kp LGUI >
                                             ;
                                     };
         };
