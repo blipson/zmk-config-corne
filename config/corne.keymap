@@ -9,6 +9,28 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+       macros {
+            rectangle_left_half: rectangle_left_half {
+                            label = "rectangle_left_half";
+                            compatible = "zmk,behavior-macro";
+                            #binding-cells = <0>;
+                            bindings
+                                = <&macro_press &kp LALT &kp GUI >
+                                , <&macro_tap &kp LEFT >
+                                , <&macro_release &kp LALT &kp GUI >
+                                ;
+                        };
+            rectangle_right_half: rectangle_right_half {
+                                        label = "rectangle_right_half";
+                                        compatible = "zmk,behavior-macro";
+                                        #binding-cells = <0>;
+                                        bindings
+                                            = <&macro_press &kp LALT &kp GUI >
+                                            , <&macro_tap &kp RIGHT >
+                                            , <&macro_release &kp LALT &kp GUI >
+                                            ;
+                                    };
+        };
         keymap {
                 compatible = "zmk,keymap";
 
@@ -61,7 +83,7 @@
 //                    |  |   GUI  | SPC |   | SPC |   ALT  |  |
                         bindings = <
    &kp  ESC  &kp F1 &kp F2 &kp F3 &kp F4 &kp F5   &kp F6 &kp F7  &kp F8 &kp F9 &kp F10 &none
-   &kp LCTRL &none   &none &none   &none   &none      &none &none        &none &kp F11 &kp F12 &none
+   &kp LCTRL &none   &rectangle_left_half &rectangle_right_half   &none   &none      &none &none        &none &kp F11 &kp F12 &none
    &kp LSHFT &none   &kp C_MUTE &kp C_VOL_DN   &kp C_VOL_UP   &none  &none    &none &none  &none        &none &none &kp RSHFT
                              &none &kp LGUI   &kp SPACE   &kp SPACE   &kp RALT    &none
                         >;
