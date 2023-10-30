@@ -141,7 +141,7 @@
    &kp GRAVE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT        &kp CARET &kp AMPS &kp UP   &kp LPAR  &kp RPAR   &kp BSLH
    &kp LCTRL &none    &none  &none    &none    &none            &none     &kp LEFT &kp DOWN &kp RIGHT &none      &kp RET
    &kp LSHFT &none    &none  &none    &none    &none            &kp INS   &kp END  &kp HOME  &kp PG_DN &kp PG_UP &kp RSHFT
-                           &kp LGUI    &kp SPACE                    &kp SPACE    &kp RALT    &mo 3
+               &kp none    &kp LGUI    &kp SPACE                    &kp SPACE    &kp RALT    &mo 3
                         >;
                 };
 
