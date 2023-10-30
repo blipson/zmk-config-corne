@@ -10,6 +10,16 @@
 
 / {
        macros {
+            intellij_open_terminal: intellij_open_terminal {
+                label = "intellj_open_terminal";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                bindings
+                    = <&macro_press &kp LALT >
+                    , <&macro_tap &kp F12 >
+                    , <&macro_release &kp LALT >
+                    ;
+            };
             rectangle_left_half: rectangle_left_half {
                             label = "rectangle_left_half";
                             compatible = "zmk,behavior-macro";
