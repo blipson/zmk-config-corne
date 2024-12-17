@@ -9,6 +9,21 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+    behaviors {
+         tog_on: toggle_layer_on_only {
+             compatible = "zmk,behavior-toggle-layer";
+             #binding-cells = <1>;
+             display-name = "Toggle Layer On";
+             toggle-mode = "on";
+         };
+        tog_off: toggle_layer_off_only {
+          compatible = "zmk,behavior-toggle-layer";
+          #binding-cells = <1>;
+          display-name = "Toggle Layer Off";
+          toggle-mode = "off";
+        };
+    };
+
     macros {
         intellij_open_terminal: intellij_open_terminal {
             label = "intellj_open_terminal";
@@ -100,6 +115,36 @@
                 , <&macro_release &kp LGUI >
                 ;
         };
+        toggle_linux: toggle_linux {
+            label = "toggle_linux";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &tog_off 0 >
+                , <&macro_press &tog_off 1 >
+                , <&macro_press &tog_off 2 >
+                , <&macro_press &tog_off 3 >
+                , <&macro_press &tog_on 4 >
+                , <&macro_press &tog_on 5 >
+                , <&macro_press &tog_on 6 >
+                , <&macro_press &tog_on 7 >
+                ;
+        };
+        toggle_mac: toggle_mac {
+            label = "toggle_mac";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &tog_on 0 >
+                , <&macro_press &tog_on 1 >
+                , <&macro_press &tog_on 2 >
+                , <&macro_press &tog_on 3 >
+                , <&macro_press &tog_off 4 >
+                , <&macro_press &tog_off 5 >
+                , <&macro_press &tog_off 6 >
+                , <&macro_press &tog_off 7 >
+                ;
+        };
     };
 
     keymap {
@@ -147,13 +192,13 @@
 
                 adjust_layer {
 // -----------------------------------------------------------------------------------------
-// | ESC  |      F1       |    F2     |    F3      |   F4   |      F5       |   |  F6    |  F7    |   F8       |   F9   |  F10  | GOTO_LNX |
-// | CTRL | OPEN_TERMINAL | LEFT_HALF | RIGHT_HALF | RENAME |     DEBUG     |   | RUN    | BACK   | FORWARD    |   F11  |  F12  | BT_SEL 0 |
-// | CAPS |               |   MUTE    |  VOL_DWN   | VOL_UP | SWITCH_WINDOW |   | BT_PRV | BT_NXT | BT_CLR_ALL | BRI_DN | BR_UP | CAPS     |
+// | ESC  |      F1       |    F2     |    F3      |   F4   |      F5       |   |  F6    |  F7    |   F8       |   F9   |  F10  | TOG_LNX |
+// | CTRL | OPEN_TERMINAL | LEFT_HALF | RIGHT_HALF | RENAME |     DEBUG     |   | RUN    | BACK   | FORWARD    |   F11  |  F12  |         |
+// | CAPS |               |   MUTE    |  VOL_DWN   | VOL_UP | SWITCH_WINDOW |   | BT_PRV | BT_NXT | BT_CLR_ALL | BRI_DN | BR_UP | CAPS    |
 //                                    |            |  GUI   |      SPC      |   | SPC    | ALT    |            |
                         bindings = <
-   &kp ESC   &kp F1                   &kp F2               &kp F3                &kp F4           &kp F5                     &kp F6        &kp F7       &kp F8          &kp F9       &kp F10      &to 4
-   &kp LCTRL &intellij_open_terminal  &rectangle_left_half &rectangle_right_half &intellij_rename &intellij_debug            &intellij_run &go_back     &go_forward     &kp F11      &kp F12      &to 5
+   &kp ESC   &kp F1                   &kp F2               &kp F3                &kp F4           &kp F5                     &kp F6        &kp F7       &kp F8          &kp F9       &kp F10      &toggle_linux
+   &kp LCTRL &intellij_open_terminal  &rectangle_left_half &rectangle_right_half &intellij_rename &intellij_debug            &intellij_run &go_back     &go_forward     &kp F11      &kp F12      &none
    &kp CAPS &none                     &kp C_MUTE           &kp C_VOL_DN          &kp C_VOL_UP     &switch_windows            &bt BT_PRV    &bt BT_NXT   &bt BT_CLR_ALL  &kp C_BRI_DN &kp C_BRI_UP &kp CAPS
                                                &none    &kp LGUI    &kp SPACE                                                &kp SPACE         &kp RALT    &none
                         >;
@@ -170,6 +215,47 @@
    &kp LGUI &kp A &kp S &kp D    &kp F    &kp G         &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LSHFT &kp Z &kp X &kp C    &kp V    &kp B         &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
                     &mo 2 &kp LCTRL &kp SPACE                 &kp SPACE &kp RALT &mo 1
+                        >;
+                };
+            linux_lower_layer {
+// -----------------------------------------------------------------------------------------
+// |  ESC  |   1   |   2   |     3     |   4   |  5   |   |  6  |  7  |  8  |  9  |  0  | DEL |
+// | LCTRL | ASTRK | MINUS |   PLUS    | LBRC  | RBRC |   |     |     |     |     |     |     |
+// | BSLH  | PIPE  | UNDER |  KP_EQUAL | LBKT  | RBKT |   |     |     |     |     |     |     |
+//                                  | ADJ | GUI | SPC |   | SPC | ALT | ALT |
+                bindings = <
+   &kp ESC   &kp N1    &kp N2    &kp N3       &kp N4   &kp N5         &kp N6   &kp N7   &kp N8 &kp N9 &kp N0 &kp DEL
+   &kp LCTRL &kp ASTRK &kp MINUS &kp PLUS     &kp LBRC &kp RBRC       &none    &none    &none  &none  &none  &none
+   &kp BSLH  &kp PIPE  &kp UNDER &kp KP_EQUAL &kp LBKT &kp RBKT       &none    &none    &none  &none  &none  &none
+                                  &mo 3 &kp LGUI  &kp SPACE               &kp SPACE  &kp RALT  &kp RALT
+                        >;
+                };
+
+                linux_raise_layer {
+// -----------------------------------------------------------------------------------------
+// | GRAVE |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &   |  UP  |   (   |   )   | BSLH  |
+// | CTRL  |     |     |     |     |     |   |     | LEFT | DOWN | RIGH* |       | ENT   |
+// | LSHFT |     |     |     |     |     |   | INS | END  | HOME | PG_DN | PG_UP | RSHFT |
+//                     | GUI |     | SPC |   | ENT |     | ALT |
+                        bindings = <
+   &kp GRAVE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT        &kp CARET &kp AMPS &kp UP   &kp LPAR  &kp RPAR   &kp BSLH
+   &kp LCTRL &none    &none  &none    &none    &none            &none     &kp LEFT &kp DOWN &kp RIGHT &none      &kp RET
+   &kp LSHFT &none    &none  &none    &none    &none            &kp INS   &kp END  &kp HOME  &kp PG_DN &kp PG_UP &kp RSHFT
+                  &none    &kp LGUI    &kp SPACE                    &kp SPACE    &kp RALT    &mo 3
+                        >;
+                };
+
+                linux_adjust_layer {
+// -----------------------------------------------------------------------------------------
+// | ESC  |      F1       |    F2     |    F3      |   F4   |      F5       |   |  F6    |  F7    |   F8       |   F9   |  F10  | TOG_MAX |
+// | CTRL | OPEN_TERMINAL | LEFT_HALF | RIGHT_HALF | RENAME |     DEBUG     |   | RUN    | BACK   | FORWARD    |   F11  |  F12  |         |
+// | CAPS |               |   MUTE    |  VOL_DWN   | VOL_UP | SWITCH_WINDOW |   | BT_PRV | BT_NXT | BT_CLR_ALL | BRI_DN | BR_UP | CAPS    |
+//                                    |            |  GUI   |      SPC      |   | SPC    | ALT    |            |
+                        bindings = <
+   &kp ESC   &kp F1                   &kp F2               &kp F3                &kp F4           &kp F5                     &kp F6        &kp F7       &kp F8          &kp F9       &kp F10      &toggle_mac
+   &kp LCTRL &intellij_open_terminal  &rectangle_left_half &rectangle_right_half &intellij_rename &intellij_debug            &intellij_run &go_back     &go_forward     &kp F11      &kp F12      &none
+   &kp CAPS &none                     &kp C_MUTE           &kp C_VOL_DN          &kp C_VOL_UP     &switch_windows            &bt BT_PRV    &bt BT_NXT   &bt BT_CLR_ALL  &kp C_BRI_DN &kp C_BRI_UP &kp CAPS
+                                               &none    &kp LGUI    &kp SPACE                                                &kp SPACE         &kp RALT    &none
                         >;
                 };
         };
