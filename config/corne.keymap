@@ -108,7 +108,7 @@
 // -----------------------------------------------------------------------------------------
 // | TAB  |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BKSP |
 // | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | SHFT  |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | SHFT |
 //                    | RSE | GUI | SPC |   | SPC | ALT | LWR |
                 bindings = <
    &kp TAB   &kp Q &kp W &kp E    &kp R    &kp T         &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
@@ -147,15 +147,29 @@
 
                 adjust_layer {
 // -----------------------------------------------------------------------------------------
-// | ESC  |      F1       |    F2     |    F3      |   F4   |      F5       |   |  F6    |  F7    |   F8       |   F9   |  F10  |          |
+// | ESC  |      F1       |    F2     |    F3      |   F4   |      F5       |   |  F6    |  F7    |   F8       |   F9   |  F10  | GOTO_LNX |
 // | CTRL | OPEN_TERMINAL | LEFT_HALF | RIGHT_HALF | RENAME |     DEBUG     |   | RUN    | BACK   | FORWARD    |   F11  |  F12  | BT_SEL 0 |
 // | CAPS |               |   MUTE    |  VOL_DWN   | VOL_UP | SWITCH_WINDOW |   | BT_PRV | BT_NXT | BT_CLR_ALL | BRI_DN | BR_UP | CAPS     |
 //                                    |            |  GUI   |      SPC      |   | SPC    | ALT    |            |
                         bindings = <
-   &kp ESC   &kp F1                   &kp F2               &kp F3                &kp F4           &kp F5                     &kp F6        &kp F7       &kp F8          &kp F9       &kp F10      &none
-   &kp LCTRL &intellij_open_terminal  &rectangle_left_half &rectangle_right_half &intellij_rename &intellij_debug            &intellij_run &go_back     &go_forward     &kp F11      &kp F12      &bt BT_SEL 0
+   &kp ESC   &kp F1                   &kp F2               &kp F3                &kp F4           &kp F5                     &kp F6        &kp F7       &kp F8          &kp F9       &kp F10      &to 4
+   &kp LCTRL &intellij_open_terminal  &rectangle_left_half &rectangle_right_half &intellij_rename &intellij_debug            &intellij_run &go_back     &go_forward     &kp F11      &kp F12      &to 5
    &kp CAPS &none                     &kp C_MUTE           &kp C_VOL_DN          &kp C_VOL_UP     &switch_windows            &bt BT_PRV    &bt BT_NXT   &bt BT_CLR_ALL  &kp C_BRI_DN &kp C_BRI_UP &kp CAPS
                                                &none    &kp LGUI    &kp SPACE                                                &kp SPACE         &kp RALT    &none
+                        >;
+                };
+
+                linux_default_layer {
+// -----------------------------------------------------------------------------------------
+// | TAB  |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BKSP |
+// | GUI  |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | SHFT |
+//               | LNX_RSE | CTRL | SPC |   | SPC | ALT | LNX_LWR |
+                bindings = <
+   &kp TAB   &kp Q &kp W &kp E    &kp R    &kp T         &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp LGUI &kp A &kp S &kp D    &kp F    &kp G         &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp LSHFT &kp Z &kp X &kp C    &kp V    &kp B         &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
+                    &mo 2 &kp LCTRL &kp SPACE                 &kp SPACE &kp RALT &mo 1
                         >;
                 };
         };
